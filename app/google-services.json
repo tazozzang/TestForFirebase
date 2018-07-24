@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "223343548468",
+    "firebase_url": "https://testforfirebase-7277f.firebaseio.com",
+    "project_id": "testforfirebase-7277f",
+    "storage_bucket": "testforfirebase-7277f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223343548468:android:3cd37303f18f3bf0",
+        "android_client_info": {
+          "package_name": "com.example.tazo.testforfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223343548468-o0r56536idncr3j4rad6vbtmr4i3hpfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tazo.testforfirebase",
+            "certificate_hash": "c3ee775541b23e228a833976bd17153577b3546a"
+          }
+        },
+        {
+          "client_id": "223343548468-886pptcmam0r6cu5svepj3s4e3k36q9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB9O9cdcco8V9OuL2gbmmjn-2X_qPhMDY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223343548468-886pptcmam0r6cu5svepj3s4e3k36q9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
