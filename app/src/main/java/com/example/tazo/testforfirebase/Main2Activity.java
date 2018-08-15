@@ -1,16 +1,8 @@
 package com.example.tazo.testforfirebase;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,55 +10,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
-    private ArrayAdapter<String> arrayAdapter;
-    private ListView listView;
-    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        int PerCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET);
-
-
-        if(PerCheck == PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this,
-                    new String[]{
-                            Manifest.permission.INTERNET
-                    },
-                    0
-            );
-        }
-
-        init();
-        initFirebaseDatabase();
-        
-
-    }
-
-    private void init(){
-
-        listView = (ListView)findViewById(R.id.list_message);
-        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-        listView.setAdapter(arrayAdapter);
-        editText = (EditText)findViewById(R.id.edit_message);
+        setContentView(R.layout.activity_main2);
         findViewById(R.id.btn_send).setOnClickListener(this);
+        findViewById(R.id.btn_delete).setOnClickListener(this);
+        initFirebaseDatabase();
     }
-
     private void initFirebaseDatabase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("message");
+        databaseReference = firebaseDatabase.getInstance().getReference("json");
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String message = dataSnapshot.getValue(String.class);
-                arrayAdapter.add(message);
             }
 
             @Override
@@ -76,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String message = dataSnapshot.getValue(String.class);
-                arrayAdapter.remove(message);
             }
 
             @Override
@@ -90,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         databaseReference.addChildEventListener(childEventListener);
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -99,10 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String message = editText.getText().toString();
-        if (!TextUtils.isEmpty(message)) {
-            editText.setText("");
-            databaseReference.push().setValue(message);
+        switch (v.getId()){
+            case R.id.btn_send:
+                Qtqt qtqt = new Qtqt("이지연", 24.0 , "서울시 광진구");
+                databaseReference.child(qtqt.getName()).setValue(qtqt);
+                qtqt = new Qtqt("이미란", 24.0 , "서울시 광진구");
+                databaseReference.child(qtqt.getName()).setValue(qtqt);
+                qtqt = new Qtqt("전소은", 24.0 , "서울시 광진구");
+                databaseReference.child(qtqt.getName()).setValue(qtqt);
+                break;
+            case R.id.btn_delete:
+                databaseReference.child("이지연").removeValue();
+                break;
         }
+
     }
 }
