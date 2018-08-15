@@ -13,8 +13,13 @@
         android:layout_height="match_parent"
         android:text="SEND"/>
     <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="UPDATE"/>
+    <Button
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="SEND"/>
+        android:text="DELETE"/>
 </LinearLayout>
